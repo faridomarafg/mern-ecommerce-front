@@ -121,7 +121,8 @@ const productSlice = createSlice({
 
     //Get Single Product 
     .addCase(getSingleProduct.pending, (state)=>{
-      state.isLoading = true 
+      state.isLoading = true
+      console.log(state.isLoading); 
     })
     .addCase(getSingleProduct.fulfilled, (state, action)=>{
     state.isLoading = false;
@@ -141,7 +142,6 @@ const productSlice = createSlice({
     .addCase(createProduct.fulfilled, (state, action)=>{
     state.isLoading = false;
     state.isSuccess = true;
-    state.products = [action.payload];
     })
     .addCase(createProduct.rejected, (state, action)=>{
     state.isLoading = false;

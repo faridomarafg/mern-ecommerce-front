@@ -1,7 +1,6 @@
 import {Routes, Route} from 'react-router-dom'
 import AddProduct from '../components/admin/addProduct/AddProduct'
 import AdminSideBar from '../components/admin/adminSidebar/AdminSideBar'
-import Home from '../components/admin/home/Home'
 import ViewOrders from '../components/admin/viewOrders/ViewOrders'
 import ViewProducts from '../components/admin/viewProducts/ViewProducts'
 import OrderDetails from '../components/admin/viewOrders/OrderDetails'
@@ -20,7 +19,6 @@ function Admin() {
           {/* Nested routes for admin */}
           <div className='w-full'>
           <Routes>
-          <Route path='home' element={<Home/>}/>
           <Route path='all-products' element={<ViewProducts/>}/>
           <Route path='add-product' element={<AddProduct/>}/>
           <Route path='update-product/:id' element={<UpdateProduct/>}/>

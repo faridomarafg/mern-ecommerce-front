@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { getAllProducts, reset } from "../../features/product/productSlice";
+import { getAllProducts } from "../../features/product/productSlice";
 import Pagination from "../pagination/Pagination";
 import Spinner from "../Spinner";
 import ProductCard from "./ProductCard";
@@ -11,6 +11,9 @@ import { setSearchQuery } from "../../features/search/searchSlice";
 function Product() {
   const dispatch = useDispatch();
   const { isLoading, isError, products } = useSelector((state) => state.products);
+
+  console.log({isLoading});
+
 
     //search section
     const searchQuery = useSelector((state) => state.search.searchQuery);
@@ -38,7 +41,7 @@ function Product() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-    dispatch(reset());
+    // dispatch(reset());
   }, [dispatch]);
  
   if (isLoading) {
@@ -47,7 +50,8 @@ function Product() {
 
   return (
     <div id="product" className="flex sm:w-full flex-col w-full">
-      {/* SEARCH SECTION */}
+       {isLoading && (<Spinner/>)}
+             {/* SEARCH SECTION */}
       <div className="flex w-full items-center justify-center bg-slate-400 shadow-sm border-2 border-slate-400 py-5">
         <div className="flex items-center justify-center w-[50%] relative">
           <input 
@@ -62,6 +66,7 @@ function Product() {
 
       <div className="p-4 w-full sm:w-full flex">
         <div className="grid grid-cols-1 xs:grid-cols-2 ss:grid-cols-3 items-center w-full sm:grid-cols-3 md:grid-cols-4 gap-5">
+         
           {currentProducts?.map((product, index) => {
             return (
               <div key={index}>
